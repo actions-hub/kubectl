@@ -2,7 +2,7 @@
 
 [![Preview](https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/kubectl/logo.png)](https://cloud.google.com)
 
-GitHub Action for working with kubectl ([k8s](https://kubernetes.io))
+GitHub Action for interacting with kubectl ([k8s](https://kubernetes.io))
 
 ## Usage
 To use kubectl put this step into your workflow:

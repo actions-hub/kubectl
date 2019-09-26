@@ -8,7 +8,7 @@ LABEL homepage="https://github.com/exelban/gcloud"
 LABEL maintainer="Serhiy Mytrovtsiy <mitrovtsiy@ukr.net>"
 
 LABEL com.github.actions.name="Kuberentes (k8s) cli - kubectl"
-LABEL com.github.actions.description="GitHub Action for working with kubectl (k8s)"
+LABEL com.github.actions.description="GitHub Action for interacting with kubectl (k8s)"
 LABEL com.github.actions.icon="terminal"
 LABEL com.github.actions.color="blue"
 
