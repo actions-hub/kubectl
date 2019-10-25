@@ -1,0 +1,20 @@
+name: 'Kuberentes (k8s) cli - kubectl'
+description: 'GitHub Action for interacting with kubectl (k8s)'
+author: 'Serhiy Mytrovtsiy <mitrovtsiy@ukr.net>'
+branding:
+  icon: 'terminal'
+  color: 'blue'
+inputs:
+  KUBE_CONFIG:
+    description: 'Kubernetes configuration'
+  KUBE_HOST:
+    description: 'Kubernetes cluster host (IP only, without protocol)'
+  KUBE_USERNAME:
+    description: 'Kubernetes cluster username'
+  KUBE_PASSWORD:
+    description: 'Kubernetes cluster password'
+  KUBE_CERTIFICATE:
+    description: 'Cluster CA certificate'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

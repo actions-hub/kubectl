@@ -9,7 +9,7 @@ To use kubectl put this step into your workflow:
 
 ### Authorization with config file
 ```yaml
-- uses: exelban/kubectl@master
+- uses: actions-hub/kubectl@master
   env:
     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
   with:
@@ -18,7 +18,7 @@ To use kubectl put this step into your workflow:
 
 ### Authorization with credentials
 ```yaml
-- uses: exelban/kubectl@master
+- uses: actions-hub/kubectl@master
   env:
     KUBE_HOST: ${{ secrets.KUBE_HOST }}
     KUBE_USERNAME: ${{ secrets.KUBE_USERNAME }}
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: exelban/kubectl@master
+      - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
@@ -91,11 +91,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: exelban/kubectl@master
+      - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 
-      - uses: exelban/kubectl@master
+      - uses: actions-hub/kubectl@master
         with:
           args: get pods
 ```
@@ -106,7 +106,7 @@ After accepting PR the new release will be created.
 To use a specific version of kubectl use:
 
 ```yaml
-- uses: exelban/kubectl@1.14.3
+- uses: actions-hub/kubectl@1.14.3
   env:
     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
   with:
@@ -114,4 +114,4 @@ To use a specific version of kubectl use:
 ```
 
 ## Licence
-[MIT License](https://github.com/exelban/kubectl/blob/master/LICENSE)
+[MIT License](https://github.com/actions-hub/kubectl/blob/master/LICENSE)
