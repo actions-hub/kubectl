@@ -24,7 +24,7 @@ if [ ! -f "$HOME/.kube/config" ]; then
         kubectl config use-context default > /dev/null
 
     else
-        echo "No authorization data found. Please provide CONFIG or HTTPS variables. Exiting...."
+        echo "No authorization data found. Please provide KUBE_CONFIG or KUBE_HOST variables. Exiting..."
         exit 1
     fi
 fi
