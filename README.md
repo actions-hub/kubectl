@@ -21,9 +21,20 @@ To use kubectl put this step into your workflow:
 - uses: actions-hub/kubectl@master
   env:
     KUBE_HOST: ${{ secrets.KUBE_HOST }}
+    KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
     KUBE_USERNAME: ${{ secrets.KUBE_USERNAME }}
     KUBE_PASSWORD: ${{ secrets.KUBE_PASSWORD }}
+  with:
+    args: get pods
+```
+
+### Authorization with a bearer token
+```yaml
+- uses: actions-hub/kubectl@master
+  env:
+    KUBE_HOST: ${{ secrets.KUBE_HOST }}
     KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
+    KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
   with:
     args: get pods
 ```
