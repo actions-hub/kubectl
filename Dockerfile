@@ -1,4 +1,4 @@
-FROM alpine:3.10.2
+FROM python:alpine
 MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
 ARG KUBE_VERSION="1.21.2"
