@@ -1,8 +1,8 @@
-FROM bikotoru/pythonwithaws:v1
+FROM python:latest
 MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
 ARG KUBE_VERSION="1.21.2"
-
+RUN pip3 --no-cache-dir install aws
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh && \
     apk add --no-cache --update openssl curl ca-certificates && \
