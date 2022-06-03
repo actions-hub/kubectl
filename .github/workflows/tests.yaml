@@ -3,44 +3,6 @@ name: tests
 on: [push]
 
 jobs:
-  default-cmd:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          curl --silent --fail https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-          k3d cluster delete testing
-          k3d cluster create testing
-          KUBECONFIG=$(k3d kubeconfig get testing | base64 | sed ':a;N;$!ba;s/\n//g')
-          echo "KUBE_CONFIG=${KUBECONFIG}" >> $GITHUB_ENV
-      - uses: ./
-  get-pods:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          curl --silent --fail https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-          k3d cluster delete testing
-          k3d cluster create testing
-          KUBECONFIG=$(k3d kubeconfig get testing | base64 | sed ':a;N;$!ba;s/\n//g')
-          echo "KUBE_CONFIG=${KUBECONFIG}" >> $GITHUB_ENV
-      - uses: ./
-        with:
-          args: get pods
-  multiply:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          curl --silent --fail https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-          k3d cluster delete testing
-          k3d cluster create testing
-          KUBECONFIG=$(k3d kubeconfig get testing | base64 | sed ':a;N;$!ba;s/\n//g')
-          echo "KUBE_CONFIG=${KUBECONFIG}" >> $GITHUB_ENV
-      - uses: ./
-      - uses: ./
-        with:
-          args: get pods
   kustomize:
     runs-on: ubuntu-latest
     steps:

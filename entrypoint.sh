@@ -30,11 +30,11 @@ if [ ! -f "$HOME/.kube/config" ]; then
 
         kubectl config set-context default --cluster=default --namespace=default --user=cluster-admin > /dev/null
         kubectl config use-context default > /dev/null
-    elif [[ $INPUT_ARGS == "kustomize" ]]; then :;
+    elif [[ $* == "kustomize" ]]; then :;
     else
         echo "No authorization data found. Please provide KUBE_CONFIG or KUBE_HOST variables. Exiting..."
         exit 1
     fi
 fi
 
-kubectl $INPUT_ARGS
+kubectl $*
