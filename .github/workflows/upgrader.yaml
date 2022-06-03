@@ -16,7 +16,7 @@ jobs:
       - name: Check if new version exist
         id: check
         run: |
-          SDK_VERSION=$(curl --silent "https://api.github.com/repos/kubernetes/kubernetes/releases" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sort -V -r | head -n 1)
+          SDK_VERSION=$(curl --silent "https://api.github.com/repos/kubernetes/kubernetes/releases" | jq '.[] | select(.prerelease==false) | .tag_name' | sort -V -r | head -n 1 | tr -d '"')
           LATEST_VERSION=$(curl --silent "https://api.github.com/repos/actions-hub/kubectl/releases/latest" | tac | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
           DOCKER_VERSION=$(cat $GITHUB_WORKSPACE/Dockerfile | grep "ARG KUBE_VERSION=" | sed -E 's/ARG KUBE_VERSION=//' | tr -d '"')
           
