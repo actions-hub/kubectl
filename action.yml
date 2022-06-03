@@ -5,16 +5,9 @@ branding:
   icon: 'terminal'
   color: 'blue'
 inputs:
-  KUBE_CONFIG:
-    description: 'Kubernetes configuration'
-  KUBE_HOST:
-    description: 'Kubernetes cluster host (IP only, without protocol)'
-  KUBE_USERNAME:
-    description: 'Kubernetes cluster username'
-  KUBE_PASSWORD:
-    description: 'Kubernetes cluster password'
-  KUBE_CERTIFICATE:
-    description: 'Cluster CA certificate'
+  args:
+    description: 'Arguments for the CLI command'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
