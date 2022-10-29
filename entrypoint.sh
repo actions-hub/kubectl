@@ -37,4 +37,12 @@ if [ ! -f "$HOME/.kube/config" ]; then
     fi
 fi
 
-kubectl $*
+if [ -z "$dest" ]; then
+    kubectl $*
+else
+    output=$(kubectl $*)
+    echo "::set-output name=$dest::$output"
+
+    # debug only
+    #echo $output
+fi

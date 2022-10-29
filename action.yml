@@ -8,6 +8,11 @@ inputs:
   args:
     description: 'Arguments for the CLI command'
     required: false
+  redirect-to:
+    description: 'Variable name to redirect CLI output'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    dest: ${{ inputs.redirect-to }}
