@@ -42,6 +42,7 @@ if [ -z "$dest" ]; then
 else
     output=$(kubectl $*)
     echo "::set-output name=$dest::$output"
+    echo "::add-mask::$output"
 
     # debug only
     #echo $output
