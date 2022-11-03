@@ -37,4 +37,12 @@ if [ ! -f "$HOME/.kube/config" ]; then
     fi
 fi
 
-kubectl $*
+if [ -z "$dest" ]; then
+    kubectl $*
+else
+    echo "$dest<<EOF" >> $GITHUB_ENV
+    kubectl $* >> $GITHUB_ENV
+    echo "EOF" >> $GITHUB_ENV
+    
+    echo "::add-mask::$dest"
+fi
