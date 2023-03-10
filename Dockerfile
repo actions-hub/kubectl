@@ -1,4 +1,4 @@
-FROM alpine:3.15.4
+FROM alpine:3.17
 MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
 ARG KUBE_VERSION="v1.26.2"
