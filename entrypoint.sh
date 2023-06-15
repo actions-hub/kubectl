@@ -10,7 +10,7 @@ fi
 
 if [ ! -f "$HOME/.kube/config" ]; then
     if [ ! -z "${KUBE_CONFIG}" ]; then
-        echo "$KUBE_CONFIG" | base64 -d > $HOME/.kube/config
+        echo "$KUBE_CONFIG" > $HOME/.kube/config
 
         if [ ! -z "${KUBE_CONTEXT}" ]; then
             kubectl config use-context $KUBE_CONTEXT
