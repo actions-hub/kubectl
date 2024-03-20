@@ -56,7 +56,7 @@ Optionally you can switch the [context](https://kubernetes.io/docs/tasks/access-
 | KUBE_CONFIG | string (base64) |
 | KUBE_CONTEXT | string |
 
-### KUBECONFIG file
+### HTTP basic authentication
 Another way to authenticate in the cluster is [HTTP basic auth](https://kubernetes.io/docs/reference/access-authn-authz/authentication/).
   
 For this you need to pass:
