@@ -1,7 +1,7 @@
 FROM alpine:3.17
 MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
-ARG KUBE_VERSION="v1.30.0"
+ARG KUBE_VERSION="v1.30.1"
 
 COPY entrypoint.sh /entrypoint.sh
 
