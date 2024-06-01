@@ -39,7 +39,7 @@ To use kubectl put this step into your workflow:
     args: get pods
 ```
 
-### Using kubectl ouput:
+### Using kubectl ouput
 ```yaml
   - name: 🛂 Check namespace exists
     uses: actions-hub/kubectl@master
