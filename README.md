@@ -41,18 +41,19 @@ To use kubectl put this step into your workflow:
 
 ### Using kubectl ouput
 ```yaml
+  - run: echo "EXPECTED_NAMESPACE=namespace/$NAMESPACE" >> $GITHUB_ENV
   - name: 🛂 Check namespace exists
     uses: actions-hub/kubectl@master
     with:
       redirect-to: NAMESPACE_EXIST
-      args: get namespace ${{ env.EXPECTED_NAMESPACE }} --ignore-not-found
+      args: get namespace ${{ env.NAMESPACE }} -o name --ignore-not-found
 
-  - name: 🛡️ Preserve secret FRONT_TLS
-    if: env.NAMESPACE_EXIST == ${{ env.EXPECTED_NAMESPACE }}
+  - name: 🛡️ Preserve secret WEBAPP_TLS
+    if: env.NAMESPACE_EXIST == env.EXPECTED_NAMESPACE
     uses: actions-hub/kubectl@master
     with:
       redirect-to: WEBAPP_TLS
-      args: get secret webapp-tls -n ${{ env.EXPECTED_NAMESPACE }} -o yaml
+      args: get secret webapp-tls -n ${{ env.NAMESPACE }} -o yaml
 ```
 
 ## Environment variables
