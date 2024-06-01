@@ -39,6 +39,22 @@ To use kubectl put this step into your workflow:
     args: get pods
 ```
 
+### Using kubectl ouput:
+```yaml
+  - name: 🛂 Check namespace exists
+    uses: actions-hub/kubectl@master
+    with:
+      redirect-to: NAMESPACE_EXIST
+      args: get namespace ${{ env.EXPECTED_NAMESPACE }} --ignore-not-found
+
+  - name: 🛡️ Preserve secret FRONT_TLS
+    if: env.NAMESPACE_EXIST == ${{ env.EXPECTED_NAMESPACE }}
+    uses: actions-hub/kubectl@master
+    with:
+      redirect-to: WEBAPP_TLS
+      args: get secret webapp-tls -n ${{ env.EXPECTED_NAMESPACE }} -o yaml
+```
+
 ## Environment variables
 All these variables need to authorize to kubernetes cluster.  
 I recommend using secrets for this.
