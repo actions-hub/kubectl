@@ -15,6 +15,12 @@ if [ ! -f "$HOME/.kube/config" ]; then
         if [ ! -z "${KUBE_CONTEXT}" ]; then
             kubectl config use-context $KUBE_CONTEXT
         fi
+    elif [ ! -z "${KUBE_UTF8_CONFIG}" ]; then
+        echo "$KUBE_UTF8_CONFIG" > $HOME/.kube/config
+
+        if [ ! -z "${KUBE_CONTEXT}" ]; then
+            kubectl config use-context $KUBE_CONTEXT
+        fi
     elif [ ! -z "${KUBE_HOST}" ]; then
         echo "$KUBE_CERTIFICATE" | base64 -d > $HOME/.kube/certificate
         kubectl config set-cluster default --server=https://$KUBE_HOST --certificate-authority=$HOME/.kube/certificate > /dev/null
@@ -32,7 +38,7 @@ if [ ! -f "$HOME/.kube/config" ]; then
         kubectl config use-context default > /dev/null
     elif [[ $* == "kustomize" ]]; then :;
     else
-        echo "No authorization data found. Please provide KUBE_CONFIG or KUBE_HOST variables. Exiting..."
+        echo "No authorization data found. Please provide KUBE_CONFIG/KUBE_UTF8_CONFIG or KUBE_HOST variables. Exiting..."
         exit 1
     fi
 fi
