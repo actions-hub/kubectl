@@ -40,9 +40,13 @@ fi
 if [ -z "$dest" ]; then
     kubectl $*
 else
-    echo "$dest<<EOF" >> $GITHUB_ENV
+    EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+    echo "$dest<<$EOF" >> $GITHUB_ENV
     kubectl $* >> $GITHUB_ENV
-    echo "EOF" >> $GITHUB_ENV
-    
+    if [[ "${GITHUB_ENV: -1}" != $'\n' ]]; then
+        echo >> $GITHUB_ENV
+    fi
+    echo "$EOF" >> $GITHUB_ENV
+
     echo "::add-mask::$dest"
 fi
