@@ -40,9 +40,13 @@ fi
 if [ -z "$dest" ]; then
     kubectl $*
 else
-    echo "$dest<<EOF" >> $GITHUB_ENV
-    kubectl $* >> $GITHUB_ENV
-    echo "EOF" >> $GITHUB_ENV
-    
-    echo "::add-mask::$dest"
+    output=$(kubectl $*)
+    if [ $(echo "$output" | wc -l) == 1 ]; then
+        echo "$dest=$output" >> $GITHUB_OUTPUT
+        echo "::add-mask::$output"
+    else
+        echo "$dest<<EOF" >> $GITHUB_OUTPUT
+        echo "$output" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+    fi
 fi

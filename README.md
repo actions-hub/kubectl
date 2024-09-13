@@ -111,6 +111,24 @@ jobs:
           args: get pods
 ```
 
+## Access output in other steps
+
+If you want to use the output of the kubectl command in another step, you can use the `redirect-to` option. 
+```yaml
+- uses: actions-hub/kubectl@master
+  id: get-pods
+  env:
+    KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+  with:
+    args: get pods
+    redirect-to: pods
+```
+
+The output can then be accessed in another step like this:
+```yaml
+- run: echo "${{ steps.get-pods.outputs.pods }}"
+```
+
 ## Versions
 If you need a specific version of kubectl, make a PR with a specific version number.
 After accepting PR the new release will be created.   
