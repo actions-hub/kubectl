@@ -1,0 +1,31 @@
+name: Build and publish new docker image
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to docker hub
+        if: success()
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_REGISTRY_URL: ghcr.io
+
+      - name: Build image
+        if: success()
+        run: docker build -t ghcr.io/${GITHUB_REPOSITORY}/cli:${IMAGE_TAG} .
+
+      - name: Push to docker registry
+        if: success()
+        uses: actions-hub/docker/cli@master
+        with:
+          args: push ghcr.io/${GITHUB_REPOSITORY}/cli:${IMAGE_TAG}
