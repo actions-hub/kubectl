@@ -2,7 +2,7 @@ FROM alpine:3.17
 MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
 ARG TARGETPLATFORM
-ARG KUBE_VERSION="v1.36.0"
+ARG KUBE_VERSION="v1.36.1"
 
 COPY entrypoint.sh /entrypoint.sh
 
